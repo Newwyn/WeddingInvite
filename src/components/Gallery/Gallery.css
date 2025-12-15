@@ -4,9 +4,9 @@
   justify-content: center;
   background: transparent;
 
-  /* ✅ tối ưu render: trình duyệt bỏ qua phần ngoài viewport */
+  /* ✅ tối ưu render */
   content-visibility: auto;
-  contain-intrinsic-size: 1px 1200px; /* ước lượng chiều cao để tránh nhảy layout */
+  contain-intrinsic-size: 1px 1200px;
 }
 
 .gallery-shell {
@@ -50,15 +50,17 @@
   background: rgba(255, 255, 255, 0.35);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  /* ✅ ép layout ổn định: ảnh luôn đều */
+  aspect-ratio: 3 / 4;
 }
 
 .gallery-item img {
   width: 100%;
-  height: 440px;
+  height: 100%;
   object-fit: cover;
   display: block;
 
-  /* ✅ giảm “giật/lag” khi hover */
   transform: translateZ(0);
   will-change: transform;
   transition: transform 0.35s ease;
@@ -72,10 +74,10 @@
   transform: scale(1.05);
 }
 
-/* ✅ SKELETON */
+/* ✅ SKELETON (nếu sau này bạn dùng) */
 .gallery-skeleton {
-  height: 440px;
   border-radius: 22px;
+  aspect-ratio: 3 / 4;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0.35),
@@ -98,10 +100,6 @@
   .gallery-skeleton-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .gallery-item img,
-  .gallery-skeleton {
-    height: 380px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -113,19 +111,19 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-  .gallery-item img,
-  .gallery-skeleton {
-    height: 300px;
-  }
 }
 
+/* ✅ Mobile: 2 cột vẫn đẹp (đỡ dài). Nếu bạn muốn 1 cột thì nói mình đổi. */
 @media (max-width: 420px) {
   .gallery-grid,
   .gallery-skeleton-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
-  .gallery-item img,
-  .gallery-skeleton {
-    height: 320px;
+  .gallery-title {
+    font-size: 30px;
+  }
+  .gallery-divider {
+    margin: 0 auto 26px;
   }
 }

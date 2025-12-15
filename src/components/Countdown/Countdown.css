@@ -23,7 +23,6 @@
 }
 
 .countdown-title {
-  /* Classic, sang */
   font-family: "Cormorant Garamond", "Playfair Display", serif;
   font-weight: 700;
   font-size: 44px;
@@ -149,7 +148,11 @@
   }
 }
 
-/* Responsive: nhỏ thì 2 ảnh ẩn để layout không bị lệch */
+/* =========================
+   RESPONSIVE (GIỮ PC, TỐI ƯU MOBILE)
+========================= */
+
+/* Tablet: ẩn 2 ảnh để layout gọn */
 @media (max-width: 980px) {
   .countdown-inner {
     grid-template-columns: 1fr;
@@ -162,5 +165,77 @@
 
   .countdown-title {
     font-size: 36px;
+  }
+}
+
+/* ✅ Mobile: thu nhỏ title + box, để 4 ô nằm gọn, đẹp */
+@media (max-width: 600px) {
+  .countdown-section {
+    padding: 64px 14px;
+  }
+
+  .countdown-header {
+    margin: 0 auto 26px;
+  }
+
+  .countdown-title {
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+  }
+
+  .countdown-divider {
+    width: 72px;
+    margin: 0 auto 12px;
+  }
+
+  .countdown-subtitle {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* 2 hàng x 2 cột, gọn hơn */
+  .countdown-boxes {
+    gap: 12px;
+    margin: 0 auto 22px;
+  }
+
+  .countdown-box {
+    width: min(42vw, 120px);
+    height: min(42vw, 120px);
+    border-radius: 20px;
+  }
+
+  .countdown-box span {
+    font-size: 34px;
+    margin-bottom: 8px;
+  }
+
+  .countdown-box p {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .countdown-footer {
+    padding: 18px 14px;
+    font-size: 15px;
+    border-radius: 18px;
+  }
+
+  .save-date {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+}
+
+/* ✅ Máy rất nhỏ (<= 380px): thu thêm chút */
+@media (max-width: 380px) {
+  .countdown-box {
+    width: min(44vw, 112px);
+    height: min(44vw, 112px);
+  }
+
+  .countdown-box span {
+    font-size: 32px;
   }
 }
