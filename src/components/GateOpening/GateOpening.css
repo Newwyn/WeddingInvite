@@ -1,0 +1,113 @@
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+}
+
+/* CÁNH CỔNG */
+.gate {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to bottom, #ffe6ee, #ffd1dc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ĐƯỜNG KẺ GIỮA */
+.gate-left {
+  border-right: 1px solid rgba(255, 120, 150, 0.35);
+}
+
+.gate-right {
+  border-left: 1px solid rgba(255, 120, 150, 0.35);
+}
+
+/* TEXT TRÊN CỔNG */
+.gate-text {
+  text-align: center;
+  animation: fadeInText 1.2s ease forwards;
+  padding: 0 24px;
+}
+
+/* DÒNG NHỎ */
+.gate-small {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #9b1c31;
+  margin: 0;
+}
+
+/* TIÊU ĐỀ LỚN */
+.gate-title {
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #c2183a;
+  margin: 0;
+}
+
+/* ===== BÊN TRÁI: 3 DÒNG TÊN + TIM ===== */
+.gate-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.gate-name {
+  font-family: "Playfair Display", serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: #c2183a;
+  line-height: 1;
+}
+
+.gate-heart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gate-heart-icon {
+  fill: #c2183a;
+  filter: drop-shadow(0 10px 18px rgba(255, 80, 120, 0.25));
+}
+
+/* ===== BÊN PHẢI: Wedding Invitation + Trân trọng kính mời dưới ===== */
+.gate-invitation {
+  margin-bottom: 10px;
+}
+
+.gate-invite-sub {
+  margin-top: 0;
+}
+
+/* FADE IN TEXT */
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive nhẹ */
+@media (max-width: 768px) {
+  .gate-name {
+    font-size: 34px;
+  }
+  .gate-title {
+    font-size: 30px;
+  }
+  .gate-small {
+    font-size: 12px;
+    letter-spacing: 1.6px;
+  }
+}

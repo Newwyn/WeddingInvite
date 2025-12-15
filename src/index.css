@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap');
+
+@font-face {
+  font-family: "FC Arcittya Begatri";
+  src: url("./fonts/FC-Arcittya-Begatri.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+:root {
+  /* Pink Theme Colors */
+  --primary-pink: #ffb6c1;
+  --secondary-pink: #ffc0cb;
+  --light-pink: #fff0f3;
+  --dark-pink: #ff9eb5;
+  --accent-pink: #ff69b4;
+  
+  /* Glass UI Colors */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-bg-light: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(255, 182, 193, 0.2);
+  
+  /* Text Colors */
+  --text-dark: #333333;
+  --text-light: #666666;
+  --text-white: #ffffff;
+  
+  /* Gradients */
+  --gradient-pink: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 50%, #ff9eb5 100%);
+  --gradient-overlay: linear-gradient(to bottom, rgba(255, 240, 243, 0.9), rgba(255, 192, 203, 0.95));
+  
+  /* Fonts */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
+  
+  /* Spacing */
+  --section-padding: 80px 20px;
+  --border-radius: 20px;
+  --border-radius-sm: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--light-pink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-pink);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-pink);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-pink);
+}

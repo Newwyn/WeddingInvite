@@ -1,0 +1,166 @@
+.countdown-section {
+  padding: 90px 20px;
+  background: linear-gradient(to bottom, #fff5f7, #ffffff);
+}
+
+.countdown-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 260px 1fr 260px;
+  align-items: center;
+  column-gap: 48px;
+}
+
+.countdown-content {
+  text-align: center;
+}
+
+.countdown-header {
+  max-width: 780px;
+  margin: 0 auto 44px;
+}
+
+.countdown-title {
+  /* Classic, sang */
+  font-family: "Cormorant Garamond", "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.15;
+  color: #b91c3c;
+  margin: 0 0 12px;
+}
+
+.countdown-divider {
+  width: 90px;
+  height: 3px;
+  background: #ff8fa3;
+  border-radius: 999px;
+  margin: 0 auto 18px;
+}
+
+.countdown-subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0;
+}
+
+.countdown-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin: 0 auto 40px;
+}
+
+.countdown-box {
+  width: 140px;
+  height: 140px;
+  background: rgba(255, 192, 203, 0.25);
+  border-radius: 26px;
+  box-shadow: 0 18px 40px rgba(255, 143, 163, 0.22);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-box span {
+  font-family: "Montserrat", sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.countdown-box p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #64748b;
+  margin: 0;
+}
+
+.countdown-footer {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 26px 18px;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  color: #334155;
+  text-align: center;
+}
+
+.save-date {
+  margin-top: 10px;
+  color: #ff4d6d;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Side photos */
+.countdown-side {
+  display: flex;
+  justify-content: center;
+}
+
+.countdown-photo {
+  width: 230px;
+  height: 320px;
+  object-fit: cover;
+
+  border-radius: 28px;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.12);
+
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeInUp 0.9s ease forwards, floatY 6s ease-in-out infinite;
+  animation-delay: 0.15s, 0.9s;
+}
+
+.countdown-right .countdown-photo {
+  animation-delay: 0.25s, 1s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive: nhỏ thì 2 ảnh ẩn để layout không bị lệch */
+@media (max-width: 980px) {
+  .countdown-inner {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .countdown-side {
+    display: none;
+  }
+
+  .countdown-title {
+    font-size: 36px;
+  }
+}

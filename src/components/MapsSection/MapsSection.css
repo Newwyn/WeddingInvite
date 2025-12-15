@@ -1,0 +1,123 @@
+.maps-section {
+  width: 100%;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 👈 CANH GIỮA TOÀN BỘ */
+  background: transparent;
+}
+
+.maps-section .section-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.maps-section .section-divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff5f7e, #ff9aa2);
+  border-radius: 2px;
+  margin: 0 auto 40px;
+}
+
+/* CARD CHỨA MAP */
+.map-card {
+  width: 100%;
+  max-width: 720px; /* 👈 GIỐNG THIỆP MẪU */
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(255, 120, 150, 0.25);
+  text-align: center; /* 👈 TEXT + NÚT Ở GIỮA */
+}
+
+/* TIÊU ĐỀ NHÀ TRAI / GÁI */
+.map-side-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff5f7e;
+  margin-bottom: 6px;
+}
+
+.map-address {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 18px;
+}
+
+/* KHUNG MAP */
+.map-embed {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+/* NÚT GOOGLE MAPS */
+.map-button {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #ff5f7e, #ff3d5a);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(255, 95, 126, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.map-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(255, 95, 126, 0.45);
+}
+
+
+.button-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.map-button:hover .button-arrow {
+  transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .maps-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .maps-title {
+    font-size: 2rem;
+  }
+
+  .map-card {
+    padding: 30px 25px;
+  }
+
+  .map-card-title {
+    font-size: 1.5rem;
+  }
+}
+.map-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #ff5f7e, #ff3d5a);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(255, 95, 126, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.map-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(255, 95, 126, 0.45);
+}

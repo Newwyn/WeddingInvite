@@ -1,0 +1,170 @@
+/* ====== SECTION WRAPPER ====== */
+.slideshow-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* Title */
+.slideshow-title {
+  font-family: "Playfair Display", serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #2e2e2e;
+  margin-bottom: 10px;
+}
+
+.slideshow-divider {
+  width: 80px;
+  height: 3px;
+  border-radius: 3px;
+  margin: 0 auto 40px auto;
+  background: #ff8fa3;
+}
+
+/* ====== FRAME (KHUNG TO) ====== */
+.slideshow-frame {
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 26px;
+  width: 100%;
+  max-width: 1100px;
+  padding: 26px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #ffeaf1, #ffe1ec);
+  box-shadow: 0 18px 45px rgba(255, 130, 160, 0.25);
+}
+
+/* Vùng chứa ảnh */
+.slideshow-inner {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #00000010;
+  aspect-ratio: 3 / 2; /* tỉ lệ gần với ảnh cưới, bạn có thể đổi 16/9 nếu thích */
+}
+
+/* Ảnh – đặt ABSOLUTE để các slide chồng lên nhau, không xếp dọc */
+.slide-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* nếu muốn thấy đủ ảnh hơn thì đổi thành contain */
+  display: block;
+}
+
+/* ====== NÚT ĐIỀU HƯỚNG ====== */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  color: #ff6f91;
+  font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    color 0.2s ease;
+  z-index: 5;
+}
+
+/* Đẩy mũi tên ra xa hơn */
+.nav-btn-left {
+  left: -50px;
+}
+
+.nav-btn-right {
+  right: -50px;
+}
+
+.nav-btn:hover {
+  transform: translateY(-50%) scale(1.06);
+  background: #ff8fa3;
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(255, 130, 160, 0.4);
+}
+
+/* ====== DOTS ====== */
+.slideshow-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: none;
+  background: #ffc3d1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dot.active {
+  width: 20px;
+  background: #ff6f91;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .slideshow-frame {
+    max-width: 100%;
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .slideshow-inner {
+    width: 94%;
+    border-radius: 20px;
+  }
+
+  .nav-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+
+  .nav-btn-left {
+    left: -32px;
+  }
+
+  .nav-btn-right {
+    right: -32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .slideshow-title {
+    font-size: 32px;
+  }
+
+  .slideshow-frame {
+    padding: 14px;
+  }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .nav-btn-left {
+    left: -24px;
+  }
+
+  .nav-btn-right {
+    right: -24px;
+  }
+}
