@@ -1,8 +1,24 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./OverlayIntro.css";
 
 const OverlayIntro = ({ show, onOpen }) => {
+  // ✅ khóa scroll nền khi overlay mở
+  useEffect(() => {
+    if (!show) return;
+
+    const prevOverflow = document.body.style.overflow;
+    const prevOverscroll = document.body.style.overscrollBehavior;
+
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.body.style.overscrollBehavior = prevOverscroll;
+    };
+  }, [show]);
+
   const hearts = useMemo(() => {
     const COUNT = 45;
     return Array.from({ length: COUNT }).map((_, i) => {
@@ -15,7 +31,7 @@ const OverlayIntro = ({ show, onOpen }) => {
     });
   }, [show]);
 
-  const HEART_SIZE = 16; // nhỏ lại chút cho gọn
+  const HEART_SIZE = 16;
 
   return (
     <AnimatePresence>
@@ -64,7 +80,11 @@ const OverlayIntro = ({ show, onOpen }) => {
                 <motion.div
                   className="side-card-image"
                   animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 3.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
                   <img src="/side-left.png" alt="Tiệc nhà trai" />
                 </motion.div>
