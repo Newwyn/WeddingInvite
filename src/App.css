@@ -1,36 +1,23 @@
-.App {
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden; /* ✅ tránh bị “lòi” ngang trên mobile */
+.back-to-overlay {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 99999;
+
+  border: 1px solid rgba(255, 143, 163, 0.55);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+  color: #2e2e2e;
+
+  cursor: pointer;
 }
 
-/* Smooth transitions */
-section {
-  position: relative;
-  z-index: 1;
-}
-.floating-heart {
-  position: absolute;
-  opacity: 0;
-  animation: heartFade 4s ease-in-out forwards;
-  pointer-events: none;
-  user-select: none;
-}
-
-@keyframes heartFade {
-  0% {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  20% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
-  80% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.2);
-  }
+.back-to-overlay:active {
+  transform: scale(0.98);
 }
