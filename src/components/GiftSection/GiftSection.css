@@ -1,0 +1,300 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&display=swap");
+
+.gift-section {
+  padding: 90px 20px;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.gift-shell {
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 32px;
+  padding: 46px 34px 52px;
+  box-shadow: 0 20px 60px rgba(255, 140, 170, 0.22);
+  text-align: center;
+}
+
+/* ================= RSVP ================= */
+.rsvp-card {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto 28px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 150, 180, 0.25);
+  border-radius: 14px;
+  padding: 22px 20px 18px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.rsvp-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 14px;
+}
+
+.rsvp-form {
+  display: grid;
+  gap: 10px;
+}
+
+.rsvp-label {
+  font-size: 13px;
+  color: #444;
+  font-weight: 600;
+}
+
+.rsvp-input {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+}
+
+.rsvp-input:focus {
+  border-color: rgba(255, 95, 126, 0.65);
+  box-shadow: 0 0 0 3px rgba(255, 95, 126, 0.15);
+}
+
+.rsvp-subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+.rsvp-radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+.rsvp-radio input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff5f7e;
+}
+
+.rsvp-btn {
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #ff5a5f;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.rsvp-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(255, 90, 95, 0.25);
+}
+
+.rsvp-msg {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #ff3d5a;
+  text-align: center;
+}
+
+/* ================= MỪNG CƯỚI ================= */
+.gift-title {
+  font-family: "Great Vibes", cursive;
+  font-size: 46px;
+  font-weight: 400;
+  color: #ff5f7e;
+  margin: 8px 0 10px;
+}
+
+.gift-divider {
+  width: 92px;
+  height: 3px;
+  border-radius: 3px;
+  margin: 0 auto 20px;
+  background: linear-gradient(90deg, #ff5f7e, #ffc6d8);
+  animation: giftDividerPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes giftDividerPulse {
+  0% { transform: scaleX(0.55); opacity: 0.65; }
+  50% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(0.55); opacity: 0.65; }
+}
+
+.gift-desc {
+  max-width: 760px;
+  margin: 0 auto 22px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #444;
+}
+
+.gift-card {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto 22px;
+  background: rgba(255, 245, 249, 0.85);
+  border: 1px solid rgba(255, 150, 180, 0.35);
+  border-radius: 20px;
+  padding: 18px 18px 14px;
+  box-shadow: 0 16px 36px rgba(255, 120, 160, 0.16);
+  text-align: left;
+}
+
+.gift-card-title {
+  font-weight: 700;
+  color: #ff3d5a;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.gift-form {
+  display: grid;
+  gap: 10px;
+}
+
+.gift-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.gift-label {
+  font-size: 13px;
+  color: #333;
+}
+
+.gift-input {
+  width: 100%;
+  border: 1px solid rgba(255, 150, 180, 0.35);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.gift-input:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  border-color: rgba(255, 95, 126, 0.45);
+}
+
+.gift-input.copied {
+  border-color: rgba(255, 61, 90, 0.8);
+  box-shadow: 0 10px 22px rgba(255, 61, 90, 0.15);
+}
+
+.gift-value {
+  font-size: 14px;
+  color: #222;
+  font-weight: 600;
+}
+
+.gift-copyhint {
+  font-size: 12px;
+  color: #ff5f7e;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+.gift-qr {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.gift-qr-box {
+  width: min(320px, 86vw);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 150, 180, 0.35);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+}
+
+.gift-qr-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.gift-qr-note {
+  font-size: 13px;
+  color: #666;
+}
+
+.gift-thanks {
+  max-width: 760px;
+  margin: 18px auto 0;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.gift-hearts {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+  animation: giftHeartsFloat 1.8s ease-in-out infinite;
+}
+
+@keyframes giftHeartsFloat {
+  0% { transform: translateY(0); opacity: 0.85; }
+  50% { transform: translateY(-4px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.85; }
+}
+
+@media (max-width: 560px) {
+  .gift-shell {
+    padding: 40px 16px 46px;
+    border-radius: 26px;
+  }
+
+  .gift-title {
+    font-size: 40px;
+  }
+
+  .gift-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .gift-label {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  .gift-value {
+    font-size: 13px;
+  }
+
+  .rsvp-card {
+    padding: 20px 16px 16px;
+  }
+}

@@ -1,155 +1,116 @@
-/* ✅ Font wedding giống kiểu bạn bạn (script) */
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
 .hero-section {
   position: relative;
-  min-height: 100svh;
-  min-height: 100dvh;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
   overflow: hidden;
 }
 
-/* Background rõ hơn + kéo xuống để thấy mặt */
 .hero-background {
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-position: center 20%;
-  filter: brightness(0.92);
+  background-position: center top;
   z-index: 0;
-  transform: scale(1.03);
 }
 
-/* Overlay phủ nhẹ để chữ nổi */
-.hero-overlay {
+/* ✅ DIV WRAP dùng để canh giữa (ổn định 100%) */
+.hero-card-wrap {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 240, 245, 0.45)
-  );
-  z-index: 1;
+  left: 50%;
+  bottom: 6vh;
+  transform: translateX(-50%);
+  z-index: 3;
+
+  width: min(92%, 640px);
+  pointer-events: none; /* để không che thao tác nền nếu cần */
 }
 
-/* Tim rơi */
-.falling-heart {
-  position: absolute;
-  top: -50px;
-  font-size: 1.5rem;
-  color: rgba(255, 160, 185, 0.55);
-  opacity: 0.7;
-  animation: fall linear infinite;
-}
+/* ✅ CARD thật sự (Motion animate trên thằng này) */
+.hero-card {
+  pointer-events: auto;
 
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(100dvh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* Glass Card Content */
-.hero-content {
-  position: relative;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 22px;
-  padding: 80px 60px;
-  max-width: 780px;
-  width: 100%;
   text-align: center;
-  box-shadow: 0 12px 40px rgba(255, 150, 185, 0.25);
+  padding: 28px 24px;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
-/* Title */
-.hero-title {
+/* LỄ ĐÍNH HÔN */
+.hero-pre-title {
   font-family: "Great Vibes", cursive;
-  font-size: 4.2rem;
-  font-weight: 400;
-  margin: 0;
-  color: #2e2e2e;
+  font-size: 2.1rem;
+  color: #ff8fb1;
+  margin-bottom: 4px;
 }
 
-/* Names */
+/* TÊN */
 .hero-names {
-  font-family: "Playfair Display", serif;
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: #2e2e2e;
-  margin: 18px 0 0;
+  font-family: "Great Vibes", cursive;
+  font-size: 3.1rem;
+  color: #ffffff;
+  line-height: 1.25;
+  margin: 6px 0 0;
 }
 
+/* & HỒNG */
 .ampersand {
   display: block;
-  font-family: "Great Vibes", cursive;
-  font-size: 3.2rem;
+  font-size: 2.7rem;
   color: #ff8fb1;
-  margin: 12px 0;
+  margin: 10px 0;
 }
 
-/* Divider */
+/* GẠCH HỒNG */
 .hero-divider {
-  height: 2px;
-  background: rgba(255, 160, 185, 0.75);
-  margin: 26px auto;
-  border-radius: 10px;
   width: 120px;
+  height: 2px;
+  background: #ff8fb1;
+  margin: 18px auto;
+  border-radius: 10px;
 }
 
-/* Subtitle */
-.hero-subtitle {
+/* NGÀY */
+.hero-date {
   font-family: "Cormorant Garamond", serif;
   font-size: 1.25rem;
-  color: #444;
-  margin: 0 0 18px;
-  line-height: 1.55;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 6px;
 }
 
-/* Date */
-.hero-date {
-  font-family: "Playfair Display", serif;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #2e2e2e;
+/* HÂN HẠNH – HỒNG */
+.hero-subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  color: #ff8fb1;
   margin: 0;
 }
 
-/* Mobile tuning */
+/* MOBILE */
 @media (max-width: 600px) {
-  .hero-content {
-    padding: 44px 18px;
-    border-radius: 18px;
+  .hero-card-wrap {
+    bottom: 5vh;
+    width: min(92%, 520px);
   }
 
-  .hero-title {
-    font-size: 3.0rem;
+  .hero-card {
+    padding: 20px 14px;
+    border-radius: 22px;
   }
 
   .hero-names {
-    font-size: 1.9rem;
+    font-size: 2.5rem;
   }
 
   .ampersand {
-    font-size: 2.6rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.05rem;
-  }
-
-  .hero-date {
-    font-size: 1.15rem;
+    font-size: 2.3rem;
   }
 }

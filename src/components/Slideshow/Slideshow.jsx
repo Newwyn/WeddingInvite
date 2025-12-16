@@ -5,13 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // ====== CẤU HÌNH ======
 const SLIDE_INTERVAL = 5000; // ms
-const TOTAL_SLIDES = 5;      // có bao nhiêu slideX.png thì để số đó
+const TOTAL_SLIDES = 5; // có bao nhiêu slideX.png thì để số đó
 
 // Tự tạo mảng /slide1.png -> /slideN.png
-const images = Array.from(
-  { length: TOTAL_SLIDES },
-  (_, i) => `/slide${i + 1}.png`
-);
+const images = Array.from({ length: TOTAL_SLIDES }, (_, i) => `/slide${i + 1}.png`);
 
 const Slideshow = () => {
   const [current, setCurrent] = useState(0);
@@ -28,22 +25,18 @@ const Slideshow = () => {
     return () => clearInterval(timer);
   }, [isHovered]);
 
-  const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % images.length);
-  };
-
-  const prevSlide = () => {
-    setCurrent((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const goTo = (index) => {
-    setCurrent(index);
-  };
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
+  const goTo = (index) => setCurrent(index);
 
   return (
     <section className="slideshow-section" id="gallery">
-      <h2 className="slideshow-title">Khoảnh Khắc Đáng Nhớ</h2>
-      <div className="slideshow-divider" />
+      <h2 className="slideshow-title">Khoảnh khắc đáng nhớ</h2>
+
+      {/* gạch loop ngắn-dài */}
+      <div className="slideshow-divider">
+        <span />
+      </div>
 
       <div
         className="slideshow-frame"
@@ -51,11 +44,7 @@ const Slideshow = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Nút trái */}
-        <button
-          className="nav-btn nav-btn-left"
-          type="button"
-          onClick={prevSlide}
-        >
+        <button className="nav-btn nav-btn-left" type="button" onClick={prevSlide}>
           ‹
         </button>
 
@@ -71,17 +60,13 @@ const Slideshow = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              whileHover={{ scale: 1.03 }} // phóng to nhẹ khi hover
+              whileHover={{ scale: 1.03 }}
             />
           </AnimatePresence>
         </div>
 
         {/* Nút phải */}
-        <button
-          className="nav-btn nav-btn-right"
-          type="button"
-          onClick={nextSlide}
-        >
+        <button className="nav-btn nav-btn-right" type="button" onClick={nextSlide}>
           ›
         </button>
       </div>

@@ -23,16 +23,15 @@ const MapsSection = ({ selectedSide }) => {
           : "Bản đồ đến địa điểm nhà gái"}
       </h2>
 
-      <div className="section-divider" />
+      {/* gạch loop ngắn-dài */}
+      <div className="section-divider">
+        <span />
+      </div>
 
       <div className="map-card">
-        <h3 className="map-side-title">
-          {isGroom ? "Nhà Trai" : "Nhà Gái"}
-        </h3>
+        <h3 className="map-side-title">{isGroom ? "Nhà Trai" : "Nhà Gái"}</h3>
 
-        <p className="map-address">
-          {isGroom ? "White Garden GH" : "Địa điểm nhà gái"}
-        </p>
+        <p className="map-address">{isGroom ? "White Garden GH" : "Địa điểm nhà gái"}</p>
 
         <div className="map-embed">
           <iframe

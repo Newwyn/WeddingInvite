@@ -1,62 +1,84 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ThankYou.css";
 
-export default function ThankYou() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
-  const [open, setOpen] = useState(false);
+const ThankYou = () => {
+  const [openNote, setOpenNote] = useState(false);
 
+  // ESC để đóng + khoá scroll nền khi modal mở
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.3 }
-    );
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setOpenNote(false);
+    };
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+    if (openNote) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", onKeyDown);
+    } else {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [openNote]);
 
   return (
-    <section ref={sectionRef} className="thankyou-section">
-      {/* Background image */}
-      <img
-        src="/thanks.png"
-        alt="Thank you"
-        className={`thankyou-image ${visible ? "show" : ""} ${
-          open ? "dim" : ""
-        }`}
-      />
+    <section className="thankyou-section" id="thanks">
+      {/* Icon phong bì */}
+      <button
+        type="button"
+        className="envelope-btn"
+        aria-label="Mở lời nhắn"
+        onClick={() => setOpenNote(true)}
+      >
+        {/* dùng emoji cho nhẹ dự án; nếu bé có ảnh phong bì thì đổi sang <img /> */}
+        <span className="envelope-icon">✉️</span>
+      </button>
 
-      {/* Letter icon */}
-      <div className="letter-icon" onClick={() => setOpen(true)}>
-        ✉️
+      {/* Ảnh collage / bức thư lớn của bé (nếu đang có thì giữ lại ở đây) */}
+      <div className="thankyou-collage">
+        <img src="/thanks.png" alt="thank-you" />
       </div>
 
-      {/* Overlay thank you */}
-      {open && (
-        <div className="thankyou-overlay" onClick={() => setOpen(false)}>
+      {/* MODAL LỜI NHẮN */}
+      {openNote && (
+        <div className="note-overlay" onClick={() => setOpenNote(false)}>
           <div
-            className="thankyou-card"
+            className="note-modal"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Lời nhắn"
           >
-            <h2>Cảm Ơn Quý Khách</h2>
-            <p>
-              Sự hiện diện của quý khách là niềm vinh hạnh
-              <br />
-              và là món quà ý nghĩa nhất đối với gia đình chúng tôi.
-              <br />
-              Rất mong được đón tiếp!
+            <button
+              type="button"
+              className="note-close"
+              aria-label="Đóng"
+              onClick={() => setOpenNote(false)}
+            >
+              ×
+            </button>
+
+            <h3 className="note-title">Lời nhắn</h3>
+            <div className="note-divider" />
+
+            <p className="note-text">
+              Cảm ơn mọi người đã đến chung vui cùng tụi mình. Sự hiện diện và
+              lời chúc của mọi người là món quà quý giá nhất trong ngày đặc biệt
+              này. Hẹn gặp mọi người tại buổi tiệc nhé!
             </p>
-            <div className="thankyou-sign">
-              Trân trọng,
-              <br />
-              <strong>Hoàng Sơn &amp; Mỹ Duyên</strong>
+
+            <div className="note-hearts" aria-hidden="true">
+              <span>💗</span>
+              <span>💗</span>
             </div>
           </div>
         </div>
       )}
     </section>
   );
-}
+};
+
+export default ThankYou;

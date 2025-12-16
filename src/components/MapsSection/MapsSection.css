@@ -1,39 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
 .maps-section {
   width: 100%;
   padding: 80px 20px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 👈 CANH GIỮA TOÀN BỘ */
+  align-items: center;
   background: transparent;
 }
 
+/* ====== TITLE giống “Thông tin lễ cưới” ====== */
 .maps-section .section-title {
-  font-size: 32px;
-  font-weight: 700;
+  font-family: "Great Vibes", cursive;
+  font-size: 40px;
+  font-weight: 400;
+  color: #5b2b2b;
   text-align: center;
   margin-bottom: 12px;
 }
 
+/* ====== GẠCH LOOP NGẮN-DÀI ====== */
 .maps-section .section-divider {
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, #ff5f7e, #ff9aa2);
-  border-radius: 2px;
+  height: 4px;
+  display: flex;
+  justify-content: center;
   margin: 0 auto 40px;
 }
 
-/* CARD CHỨA MAP */
+.maps-section .section-divider span {
+  height: 100%;
+  background: linear-gradient(90deg, #ff8fa3, #ff5f7e);
+  border-radius: 6px;
+  animation: mapsUnderlinePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes mapsUnderlinePulse {
+  0% {
+    width: 36px;
+    opacity: 0.7;
+  }
+  50% {
+    width: 84px;
+    opacity: 1;
+  }
+  100% {
+    width: 36px;
+    opacity: 0.7;
+  }
+}
+
+/* ====== CARD CHỨA MAP ====== */
 .map-card {
   width: 100%;
-  max-width: 720px; /* 👈 GIỐNG THIỆP MẪU */
+  max-width: 720px;
   background: rgba(255, 255, 255, 0.75);
   border-radius: 24px;
   padding: 28px;
   box-shadow: 0 20px 40px rgba(255, 120, 150, 0.25);
-  text-align: center; /* 👈 TEXT + NÚT Ở GIỮA */
+  text-align: center;
 }
 
-/* TIÊU ĐỀ NHÀ TRAI / GÁI */
+/* ====== TIÊU ĐỀ NHÀ TRAI / GÁI ====== */
 .map-side-title {
   font-size: 26px;
   font-weight: 700;
@@ -47,17 +74,17 @@
   margin-bottom: 18px;
 }
 
-/* KHUNG MAP */
+/* ====== KHUNG MAP ====== */
 .map-embed {
   width: 100%;
   overflow: hidden;
   border-radius: 18px;
 }
 
-/* NÚT GOOGLE MAPS */
+/* ====== NÚT GOOGLE MAPS ====== */
 .map-button {
   display: inline-block;
-  margin-top: 22px;
+  margin-top: 20px;
   padding: 14px 28px;
   background: linear-gradient(135deg, #ff5f7e, #ff3d5a);
   color: #fff;
@@ -72,7 +99,6 @@
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(255, 95, 126, 0.45);
 }
-
 
 .button-arrow {
   font-size: 1.2rem;
@@ -92,8 +118,8 @@
 }
 
 @media (max-width: 768px) {
-  .maps-title {
-    font-size: 2rem;
+  .maps-section .section-title {
+    font-size: 34px;
   }
 
   .map-card {
@@ -103,21 +129,4 @@
   .map-card-title {
     font-size: 1.5rem;
   }
-}
-.map-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 28px;
-  background: linear-gradient(135deg, #ff5f7e, #ff3d5a);
-  color: #fff;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 10px 25px rgba(255, 95, 126, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.map-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(255, 95, 126, 0.45);
 }

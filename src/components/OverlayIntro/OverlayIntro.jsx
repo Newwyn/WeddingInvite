@@ -79,7 +79,6 @@ const OverlayIntro = ({ show, onOpen }) => {
               >
                 <motion.div
                   className="side-card-image"
-                  animate={{ y: [0, -6, 0] }}
                   transition={{
                     duration: 3.2,
                     repeat: Infinity,
@@ -105,7 +104,6 @@ const OverlayIntro = ({ show, onOpen }) => {
               >
                 <motion.div
                   className="side-card-image"
-                  animate={{ y: [0, -6, 0] }}
                   transition={{
                     duration: 3.5,
                     repeat: Infinity,

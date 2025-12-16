@@ -11,6 +11,8 @@ import Slideshow from './components/Slideshow/Slideshow';
 import Gallery from './components/Gallery/Gallery';
 import ThankYou from './components/ThankYou/ThankYou';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
+import GiftSection from './components/GiftSection/GiftSection';
+
 
 function App() {
   const [showOverlay, setShowOverlay] = useState(true);
@@ -24,7 +26,13 @@ function App() {
   const handleOpenInvitation = (side) => {
     setSelectedSide(side || null);
     setShowOverlay(false);
-    setShowGate(true);   // 👉 bật cổng
+
+    // ✅ TẠM BỎ QUA GATEOPENING: vào thẳng nội dung thiệp + bật nhạc
+    setShowMain(true);
+    setIsPlaying(true);
+
+    // ⛔ Giữ code cũ để bật lại sau (chỉ comment, không xóa)
+    // setShowGate(true);   // 👉 bật cổng
   };
 
   // Khi cổng mở xong
@@ -41,15 +49,14 @@ function App() {
         <OverlayIntro show={showOverlay} onOpen={handleOpenInvitation} />
       )}
 
-      {/* CỔNG MỞ */}
-      {showGate && <GateOpening onFinish={handleGateFinish} />}
+      {/* CỔNG MỞ (tạm vô hiệu hóa hiển thị để khách không thấy) */}
+      {/* {showGate && <GateOpening onFinish={handleGateFinish} />} */}
 
       {/* NỘI DUNG THIỆP */}
       {showMain && (
         <>
           <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
 
-          {/* ✅ CHỈ THÊM selectedSide VÀO ĐÂY */}
           <HeroSection selectedSide={selectedSide} />
 
           <Countdown selectedSide={selectedSide} />
@@ -58,6 +65,7 @@ function App() {
 
           <Slideshow />
           <Gallery />
+	<GiftSection />
           <ThankYou />
         </>
       )}
