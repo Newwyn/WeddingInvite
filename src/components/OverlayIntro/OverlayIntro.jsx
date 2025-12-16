@@ -92,7 +92,7 @@ const OverlayIntro = ({ show, onOpen }) => {
                 <p className="side-subdate">10 tháng 01 năm 2026</p>
 
                 <button className="open-button" onClick={() => onOpen("groom")}>
-                  Mở tiệc
+                  Mở thiệp
                 </button>
               </motion.div>
 
