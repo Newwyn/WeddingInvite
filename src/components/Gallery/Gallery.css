@@ -20,7 +20,7 @@
   text-align: center;
 }
 
-/* ===== TITLE giống “Thông tin lễ cưới” ===== */
+/* ===== TITLE ===== */
 .gallery-title {
   font-family: "Great Vibes", cursive;
   font-size: 40px;
@@ -29,7 +29,7 @@
   margin-bottom: 12px;
 }
 
-/* ===== DIVIDER LOOP ngắn–dài ===== */
+/* ===== DIVIDER LOOP ===== */
 .gallery-divider {
   height: 4px;
   display: flex;
@@ -45,18 +45,9 @@
 }
 
 @keyframes galleryUnderlinePulse {
-  0% {
-    width: 36px;
-    opacity: 0.7;
-  }
-  50% {
-    width: 84px;
-    opacity: 1;
-  }
-  100% {
-    width: 36px;
-    opacity: 0.7;
-  }
+  0% { width: 36px; opacity: 0.7; }
+  50% { width: 84px; opacity: 1; }
+  100% { width: 36px; opacity: 0.7; }
 }
 
 /* ===== GRID ===== */
@@ -66,7 +57,7 @@
   gap: 16px;
 }
 
-/* ===== ITEM (button để click mở modal) ===== */
+/* ===== ITEM ===== */
 .gallery-item {
   border: none;
   padding: 0;
@@ -77,28 +68,36 @@
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
 }
 
-.gallery-item:focus {
-  outline: 2px solid rgba(255, 111, 145, 0.65);
-  outline-offset: 3px;
-}
-
-/* ===== IMAGE (16:9 + kéo xuống để thấy mặt) ===== */
+/* ===== IMAGE DEFAULT ===== */
 .gallery-img {
   width: 100%;
   height: 100%;
   display: block;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-
-  /* ✅ kéo crop xuống 1 tí để thấy mặt hơn */
-  object-position: center 28%;
-
-  transform: scale(1);
+  object-position: center 28%; /* mặc định */
   transition: transform 0.35s ease;
 }
 
 .gallery-item:hover .gallery-img {
   transform: scale(1.04);
+}
+
+/* ===================== CHỈNH RIÊNG THEO ẢNH ===================== */
+/* 5 & 7 → LÊN TRÊN */
+.gallery-item:nth-child(5) .gallery-img,
+.gallery-item:nth-child(7) .gallery-img {
+  object-position: center 30%;
+}
+
+/* 1,2,3,9,10,11 → XUỐNG DƯỚI */
+.gallery-item:nth-child(1) .gallery-img,
+.gallery-item:nth-child(2) .gallery-img,
+.gallery-item:nth-child(3) .gallery-img,
+.gallery-item:nth-child(9) .gallery-img,
+.gallery-item:nth-child(10) .gallery-img,
+.gallery-item:nth-child(11) .gallery-img {
+  object-position: center 20%;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -115,13 +114,9 @@
   .gallery-grid {
     gap: 12px;
   }
-
-  .gallery-img {
-    object-position: center 24%;
-  }
 }
 
-/* ===================== LIGHTBOX / MODAL ===================== */
+/* ===================== LIGHTBOX ===================== */
 .gallery-modal {
   position: fixed;
   inset: 0;
@@ -136,8 +131,8 @@
 .gallery-modal-content {
   position: relative;
   width: fit-content;
-  max-width: 70vw; /* ✅ scale ~70% */
-  max-height: 70vh; /* ✅ scale ~70% */
+  max-width: 70vw;
+  max-height: 70vh;
 }
 
 .gallery-modal-img {
@@ -148,7 +143,6 @@
   border-radius: 18px;
   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.06);
 }
 
 /* Nút X */
@@ -164,11 +158,10 @@
   background: rgba(255, 255, 255, 0.92);
   color: #333;
   font-size: 26px;
-  line-height: 1;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
 }
 
-/* Mobile: giữ 70% nhưng cho vừa màn hơn */
+/* Mobile modal */
 @media (max-width: 600px) {
   .gallery-modal-content {
     max-width: 88vw;

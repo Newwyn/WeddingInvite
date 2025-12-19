@@ -1,86 +1,52 @@
-// src/components/Slideshow.jsx
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState } from "react";
 import "./Slideshow.css";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ====== CẤU HÌNH ======
-const SLIDE_INTERVAL = 5000; // ms
-const TOTAL_SLIDES = 5; // có bao nhiêu slideX.png thì để số đó
-
-// Tự tạo mảng /slide1.png -> /slideN.png
-const images = Array.from({ length: TOTAL_SLIDES }, (_, i) => `/slide${i + 1}.png`);
-
 const Slideshow = () => {
+  // Nếu project của vợ đang có mảng images khác thì giữ y như cũ,
+  // chỉ cần dùng current index như bên dưới.
+  const images = useMemo(
+    () => ["/slide1.png", "/slide2.png", "/slide3.png", "/slide4.png", "/slide5.png"],
+    []
+  );
+
   const [current, setCurrent] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
 
-  // Auto slide, PAUSE khi hover
-  useEffect(() => {
-    if (isHovered) return;
+  const prevSlide = () => {
+    setCurrent((p) => (p - 1 + images.length) % images.length);
+  };
 
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, SLIDE_INTERVAL);
-
-    return () => clearInterval(timer);
-  }, [isHovered]);
-
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
-  const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
-  const goTo = (index) => setCurrent(index);
+  const nextSlide = () => {
+    setCurrent((p) => (p + 1) % images.length);
+  };
 
   return (
-    <section className="slideshow-section" id="gallery">
-      <h2 className="slideshow-title">Khoảnh khắc đáng nhớ</h2>
-
-      {/* gạch loop ngắn-dài */}
-      <div className="slideshow-divider">
-        <span />
-      </div>
-
-      <div
-        className="slideshow-frame"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Nút trái */}
-        <button className="nav-btn nav-btn-left" type="button" onClick={prevSlide}>
+    <section className="slideshow-wrapper" id="slideshow">
+      <div className="slideshow-container">
+        <button className="slide-nav left" onClick={prevSlide} aria-label="Prev">
           ‹
         </button>
 
-        {/* Ảnh */}
-        <div className="slideshow-inner">
-          <AnimatePresence mode="sync" initial={false}>
+        <div className="slide-frame">
+          <AnimatePresence mode="wait">
             <motion.img
               key={current}
               src={images[current]}
               alt={`slide-${current + 1}`}
-              className="slide-image"
-              initial={{ opacity: 0, x: 20 }}
+              className={`slide-image ${
+               current === 2 ? "slide3-mobile-left" : ""
+} ${current === 4 ? "slide5-mobile-right" : ""}`}
+              initial={{ opacity: 0, x: 18 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              whileHover={{ scale: 1.03 }}
+              exit={{ opacity: 0, x: -18 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
             />
           </AnimatePresence>
         </div>
 
-        {/* Nút phải */}
-        <button className="nav-btn nav-btn-right" type="button" onClick={nextSlide}>
+        <button className="slide-nav right" onClick={nextSlide} aria-label="Next">
           ›
         </button>
-      </div>
-
-      {/* Dots */}
-      <div className="slideshow-dots">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            type="button"
-            className={`dot ${idx === current ? "active" : ""}`}
-            onClick={() => goTo(idx)}
-          />
-        ))}
       </div>
     </section>
   );

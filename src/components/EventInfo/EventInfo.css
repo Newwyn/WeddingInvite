@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap");
 
 /* ===================== WRAPPER ===================== */
 .eventinfo-wrapper {
-  padding: 80px 16px;
+  padding: 80px 20px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,75 +11,41 @@
 
 /* ===================== HEADER ===================== */
 .eventinfo-header {
-  max-width: 920px;
   width: 100%;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.88);
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 143, 163, 0.18);
   border-radius: 28px;
-  padding: 34px 24px 30px;
-  margin-bottom: 36px;
-  box-shadow: 0 14px 40px rgba(255, 140, 180, 0.12);
+  padding: 34px 20px 26px;
+  box-shadow: 0 18px 55px rgba(255, 140, 180, 0.14);
+  margin-bottom: 28px;
 }
 
-/* Title */
+/* ===================== TITLE ===================== */
 .eventinfo-title {
   font-family: "Great Vibes", cursive;
-  font-size: 40px;
+  font-size: 44px;
   font-weight: 400;
   color: #5b2b2b;
-  margin-bottom: 12px;
+  margin: 0 0 10px;
 }
 
-/* Animated underline */
+/* ===================== UNDERLINE LOOP ===================== */
 .eventinfo-underline {
-  height: 4px;
   display: flex;
   justify-content: center;
   margin-bottom: 14px;
 }
 
 .eventinfo-underline span {
-  height: 100%;
-  background: linear-gradient(90deg, #ff8fa3, #ff5f7e);
+  height: 3px;
   border-radius: 6px;
-  animation: underlinePulse 1.8s ease-in-out infinite;
+  background: linear-gradient(90deg, #ff8fa3, #ff5f7e);
+  animation: eventInfoUnderlinePulse 1.8s ease-in-out infinite;
 }
 
-/* Description */
-.eventinfo-desc {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 18px;
-  font-weight: 500;
-  color: #3b3b3b;
-  line-height: 1.6;
-}
-
-/* ===================== IMAGE CARD ===================== */
-.eventinfo-image-card {
-  width: min(920px, 94vw);
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 26px;
-  border: 1px solid rgba(255, 143, 163, 0.18);
-  box-shadow: 0 18px 55px rgba(255, 140, 180, 0.14);
-  padding: 18px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Image */
-.eventinfo-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  max-height: 78vh;
-  border-radius: 18px;
-}
-
-/* ===================== ANIMATION ===================== */
-@keyframes underlinePulse {
+@keyframes eventInfoUnderlinePulse {
   0% {
     width: 36px;
     opacity: 0.7;
@@ -93,26 +60,166 @@
   }
 }
 
-/* ===================== MOBILE ===================== */
+/* ===================== DESC ===================== */
+.eventinfo-desc {
+  margin: 0 auto;
+  max-width: 820px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #2f2f2f;
+  line-height: 1.6;
+}
+
+/* ===================== IMAGES STACK ===================== */
+.eventinfo-images {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+/* Card (đổi sang button nên bỏ style mặc định) */
+.eventinfo-image-card {
+  width: min(920px, 94vw);
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 26px;
+  border: 1px solid rgba(255, 143, 163, 0.18);
+  box-shadow: 0 18px 55px rgba(255, 140, 180, 0.14);
+  padding: 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  text-align: inherit;
+  transition: transform 0.18s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.eventinfo-image-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 24px 70px rgba(255, 120, 170, 0.18);
+  border-color: rgba(255, 95, 126, 0.35);
+}
+
+.eventinfo-image-card:active {
+  transform: translateY(-1px) scale(1.005);
+}
+
+/* Image (scale +20% như vợ muốn) */
+.eventinfo-image {
+  width: 120%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 18px;
+
+  image-rendering: auto;
+  transform: translateZ(0);
+}
+
+/* ===================== MODAL PREVIEW ===================== */
+.eventinfo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 3000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+}
+
+.eventinfo-modal {
+  width: min(980px, 94vw);
+  max-height: 92vh;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 143, 163, 0.2);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4);
+  position: relative;
+  padding: 14px;
+
+  animation: eventInfoPop 0.18s ease-out;
+}
+
+@keyframes eventInfoPop {
+  from {
+    transform: translateY(10px) scale(0.985);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.eventinfo-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+
+  font-size: 28px;
+  line-height: 36px;
+  color: #333;
+
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.eventinfo-modal-close:hover {
+  transform: scale(1.05);
+  background: #fff;
+}
+
+.eventinfo-modal-img {
+  width: 100%;
+  height: auto;
+  max-height: calc(92vh - 28px);
+  object-fit: contain;
+  border-radius: 16px;
+  display: block;
+}
+
+/* ===================== RESPONSIVE ===================== */
 @media (max-width: 600px) {
   .eventinfo-wrapper {
-    padding: 60px 12px;
+    padding: 60px 14px;
   }
 
   .eventinfo-header {
-    padding: 28px 16px 24px;
+    padding: 28px 16px 22px;
     border-radius: 24px;
+    margin-bottom: 22px;
   }
 
   .eventinfo-title {
-    font-size: 34px;
+    font-size: 38px;
   }
 
   .eventinfo-desc {
-    font-size: 16px;
+    font-size: 18px;
+  }
+
+  .eventinfo-images {
+    gap: 22px;
   }
 
   .eventinfo-image {
-    max-height: 72vh;
+    width: 120%;
+    max-height: 80vh;
   }
 }

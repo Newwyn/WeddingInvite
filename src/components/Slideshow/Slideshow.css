@@ -1,198 +1,100 @@
-@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600;700&display=swap");
-
-/* ====== SECTION WRAPPER ====== */
-.slideshow-section {
+/* ===== WRAPPER ===== */
+.slideshow-wrapper {
   padding: 80px 20px;
   text-align: center;
 }
 
-/* ====== TITLE (giống “Thông tin lễ cưới”) ====== */
-.slideshow-title {
-  font-family: "Great Vibes", cursive;
-  font-size: 40px;
-  font-weight: 400;
-  color: #5b2b2b;
-  margin-bottom: 12px;
-}
-
-/* ====== DIVIDER LOOP NGẮN–DÀI ====== */
-.slideshow-divider {
-  height: 4px;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto 40px auto;
-}
-
-.slideshow-divider span {
-  height: 100%;
-  background: linear-gradient(90deg, #ff8fa3, #ff5f7e);
-  border-radius: 6px;
-  animation: slideshowUnderlinePulse 1.8s ease-in-out infinite;
-}
-
-@keyframes slideshowUnderlinePulse {
-  0% {
-    width: 36px;
-    opacity: 0.7;
-  }
-  50% {
-    width: 84px;
-    opacity: 1;
-  }
-  100% {
-    width: 36px;
-    opacity: 0.7;
-  }
-}
-
-/* ====== FRAME ====== */
-.slideshow-frame {
-  position: relative;
-  margin: 0 auto 26px;
-  width: 100%;
-  max-width: 1100px;
-  padding: 26px;
-  border-radius: 32px;
-  background: linear-gradient(135deg, #ffeaf1, #ffe1ec);
-  box-shadow: 0 18px 45px rgba(255, 130, 160, 0.25);
-}
-
-/* ====== ẢNH (mặc định desktop để ngang cho cân) ====== */
-.slideshow-inner {
-  position: relative;
-  width: 90%;
+/* ===== CONTAINER ===== */
+.slideshow-container {
+  width: min(980px, 94vw);
   margin: 0 auto;
+  position: relative;
+}
+
+/* ===== FRAME (khung ảnh) ===== */
+.slide-frame {
+  width: 100%;
   border-radius: 26px;
   overflow: hidden;
-  background: #00000010;
-  aspect-ratio: 3 / 2; /* desktop */
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 143, 163, 0.18);
+  box-shadow: 0 18px 55px rgba(255, 140, 180, 0.14);
 }
 
+/* Ảnh mặc định */
 .slide-image {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
-/* ====== NÚT ĐIỀU HƯỚNG ====== */
-.nav-btn {
+/* ===== NÚT TRÁI/PHẢI ===== */
+.slide-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: none;
-  background: #ffffff;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-  color: #ff6f91;
-  font-size: 26px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
-    color 0.2s ease;
+  font-size: 26px;
+  line-height: 42px;
+  color: #ff6b8c;
   z-index: 5;
 }
 
-.nav-btn-left {
-  left: -50px;
+.slide-nav.left {
+  left: -10px;
 }
 
-.nav-btn-right {
-  right: -50px;
+.slide-nav.right {
+  right: -10px;
 }
 
-.nav-btn:hover {
-  transform: translateY(-50%) scale(1.06);
-  background: #ff8fa3;
-  color: #ffffff;
-  box-shadow: 0 14px 30px rgba(255, 130, 160, 0.4);
-}
-
-/* ====== DOTS ====== */
-.slideshow-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: none;
-  background: #ffc3d1;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.dot.active {
-  width: 20px;
-  background: #ff6f91;
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 900px) {
-  .slideshow-frame {
-    max-width: 100%;
-    padding: 18px;
-    border-radius: 24px;
-  }
-
-  .slideshow-inner {
-    width: 94%;
-    border-radius: 20px;
-  }
-
-  .nav-btn {
-    width: 44px;
-    height: 44px;
-    font-size: 22px;
-  }
-
-  .nav-btn-left {
-    left: -32px;
-  }
-
-  .nav-btn-right {
-    right: -32px;
-  }
-}
-
-/* ✅ MOBILE: đổi sang 9:16 để khách coi đẹp */
+/* ===================== MOBILE FIX ===================== */
+/* Mobile: set tỉ lệ 9:16 và canh slide3/slide5 */
 @media (max-width: 600px) {
-  .slideshow-title {
-    font-size: 34px;
+  .slideshow-wrapper {
+    padding: 60px 14px;
   }
 
-  .slideshow-frame {
-    padding: 14px;
+  /* Khung 9:16 để giống xem story */
+  .slide-frame {
+    aspect-ratio: 9 / 16;
   }
 
-  .slideshow-inner {
+  /* Ảnh sẽ fill đúng khung 9:16 */
+  .slide-image {
     width: 100%;
-    max-width: 380px;   /* cho gọn, đẹp như reel */
-    margin: 0 auto;
-    aspect-ratio: 9 / 16; /* MOBILE dọc */
+    height: 100%;
   }
 
-  .nav-btn {
+  /* slide5 (nắm tay) -> đẩy qua phải để thấy tay */
+  .slide5-mobile-right {
+    object-position: 55% center;
+  }
+
+  /* slide3 -> kéo qua trái để cân giữa */
+  .slide3-mobile-left {
+    object-position: 25% center;
+  }
+
+  /* Nút nhỏ hơn chút cho mobile */
+  .slide-nav {
     width: 40px;
     height: 40px;
-    font-size: 20px;
+    font-size: 24px;
+    line-height: 38px;
   }
 
-  .nav-btn-left {
-    left: -24px;
+  .slide-nav.left {
+    left: 8px;
   }
 
-  .nav-btn-right {
-    right: -24px;
+  .slide-nav.right {
+    right: 8px;
   }
 }
