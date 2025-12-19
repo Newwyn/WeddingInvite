@@ -13,7 +13,7 @@ const getClientId = () => {
   return id;
 };
 
-const GiftSection = () => {
+const GiftSection = ({ selectedSide }) => {
   // ===== RSVP STATE =====
   const [guestName, setGuestName] = useState("");
   const [attendance, setAttendance] = useState("yes"); // yes | no
@@ -21,7 +21,7 @@ const GiftSection = () => {
 
   // LINK SCRIPT MỚI CỦA BÉ
   const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbzci5ZJDSQ0HGDBP3A-8SCD06CiBMRbitwR-DbNwzRC8cF4FrCK_akMdFhIhqWYK53vYw/exec";
+    "https://script.google.com/macros/s/AKfycbw0qRxov668mXoQ58ByuP8L8OfNc7H6ivBhfaFYrvF184KrOh9NGVTeSewnBbRmuNIN/exec";
 
   const onSubmitRSVP = async (e) => {
     e.preventDefault();
@@ -34,14 +34,14 @@ const GiftSection = () => {
 
     setRsvpMsg("Đang gửi xác nhận...");
 
-    const payload = {
+   const payload = {
   name,
   attendance,
+  side: selectedSide || "unknown",
   secret: SECRET,
   clientId: getClientId(),
 };
 
-    // Cách 1: thử fetch bình thường (nếu endpoint trả JSON được thì hiển thị chuẩn)
     try {
       const res = await fetch(SCRIPT_URL, {
         method: "POST",
@@ -66,11 +66,9 @@ const GiftSection = () => {
         return;
       }
 
-      // nếu trả về không phải JSON ok, coi như fail để chuyển sang cách 2
       console.log("RSVP non-JSON or not ok:", text);
       throw new Error("Non-JSON/Not ok response");
     } catch (err) {
-      // Cách 2: gửi kiểu no-cors để KHÔNG bị chặn CORS (không đọc được phản hồi, nhưng vẫn ghi vào Sheet)
       try {
         await fetch(SCRIPT_URL, {
           method: "POST",
@@ -79,7 +77,6 @@ const GiftSection = () => {
           body: JSON.stringify(payload),
         });
 
-        // không kiểm tra được ok, nên báo “đã ghi nhận” và nhắc kiểm tra sheet
         setRsvpMsg(
           attendance === "yes"
             ? `Đã ghi nhận: ${name} sẽ tham dự. (Nếu cần, vui lòng kiểm tra lại trong bảng.)`
@@ -92,22 +89,36 @@ const GiftSection = () => {
     }
   };
 
-  // ===== GIFT INFO (giữ như trước) =====
-  const bankName = "Sacombank";
-  const accountName = "NGUYEN VO HOANG SON";
-  const accountNumber = "060110159601";
-  const transferNote = "CHUYEN TIEN NHANH QUA QR";
+  // ===== GIFT INFO (tự đổi theo selectedSide) =====
+  const groomGift = {
+    bankName: "Sacombank",
+    accountName: "NGUYEN VO HOANG SON",
+    accountNumber: "060110159601",
+    transferNote: "CHUYEN TIEN NHANH QUA QR",
+    qrImage: "/qr-hoangson.png",
+    qrAlt: "VietQR - Hoàng Sơn",
+  };
 
-  const qrImage = "/qr-hoangson.png";
+  const brideGift = {
+    bankName: "ACB",
+    accountName: "LY MY DUYEN",
+    accountNumber: "1096577",
+    transferNote: "CHUYEN TIEN NHANH QUA QR",
+    qrImage: "/qr-myduyen.png",
+    qrAlt: "VietQR - Ly My Duyen",
+  };
+
+  // Mặc định vẫn là chú rể (như hiện tại), chỉ đổi khi selectedSide === "bride"
+  const gift = selectedSide === "bride" ? brideGift : groomGift;
 
   const fields = useMemo(
     () => [
-      { label: "Ngân hàng:", value: bankName },
-      { label: "Chủ tài khoản:", value: accountName },
-      { label: "Số tài khoản:", value: accountNumber },
-      { label: "Nội dung:", value: transferNote },
+      { label: "Ngân hàng:", value: gift.bankName },
+      { label: "Chủ tài khoản:", value: gift.accountName },
+      { label: "Số tài khoản:", value: gift.accountNumber },
+      { label: "Nội dung:", value: gift.transferNote },
     ],
-    []
+    [gift.bankName, gift.accountName, gift.accountNumber, gift.transferNote]
   );
 
   const [copiedKey, setCopiedKey] = useState(null);
@@ -232,8 +243,8 @@ const GiftSection = () => {
         <div className="gift-qr">
           <div className="gift-qr-box">
             <img
-              src={qrImage}
-              alt="VietQR - Hoàng Sơn"
+              src={gift.qrImage}
+              alt={gift.qrAlt}
               className="gift-qr-img"
               loading="lazy"
             />

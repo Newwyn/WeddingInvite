@@ -3,7 +3,14 @@ import { motion } from "framer-motion";
 import "./HeroSection.css";
 
 const HeroSection = ({ selectedSide }) => {
-  const weddingDate =
+const ceremonyTitle =
+  selectedSide === "groom"
+    ? "Lễ Tân Hôn"
+    : selectedSide === "bride"
+    ? "Lễ Vu Quy"
+    : "Lễ đính hôn";
+  
+const weddingDate =
     selectedSide === "groom"
       ? "10 - 01 - 2026"
       : selectedSide === "bride"
@@ -27,7 +34,7 @@ const HeroSection = ({ selectedSide }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
         >
-          <p className="hero-pre-title">Lễ đính hôn</p>
+          <p className="hero-pre-title">{ceremonyTitle}</p>
 
           <h1 className="hero-names">
             Hoàng Sơn

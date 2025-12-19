@@ -351,3 +351,19 @@
     padding: 7px 12px;
   }
 }
+/* Khi mở bằng link riêng: chỉ 1 card, căn giữa */
+.overlay-grid.single {
+  justify-content: center;
+}
+
+/* Single card trên mobile: cho card rộng hơn */
+@media (max-width: 600px) {
+  .overlay-grid.single .side-card {
+    width: min(340px, 92vw) !important;
+  }
+  .overlay-grid.single .side-card-image {
+    max-height: 34svh;
+    max-height: 34dvh;
+  }
+}
+

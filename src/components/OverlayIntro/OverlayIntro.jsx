@@ -2,8 +2,14 @@ import React, { useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./OverlayIntro.css";
 
-const OverlayIntro = ({ show, onOpen }) => {
-  // ✅ khóa scroll nền khi overlay mở
+/**
+ * mode:
+ *  - "groom": chỉ hiển thị Lễ Tân Hôn
+ *  - "bride": chỉ hiển thị Lễ Vu Quy
+ *  - null/undefined: hiển thị cả 2 như hiện tại
+ */
+const OverlayIntro = ({ show, onOpen, mode }) => {
+  // Khóa scroll nền khi overlay mở
   useEffect(() => {
     if (!show) return;
 
@@ -32,6 +38,7 @@ const OverlayIntro = ({ show, onOpen }) => {
   }, [show]);
 
   const HEART_SIZE = 16;
+  const isSingle = mode === "groom" || mode === "bride";
 
   return (
     <AnimatePresence>
@@ -71,64 +78,66 @@ const OverlayIntro = ({ show, onOpen }) => {
             <h1 className="overlay-title">Wedding Invitation</h1>
             <p className="overlay-subtitle">Trân trọng kính mời</p>
 
-            <div className="overlay-grid">
-              <motion.div
-                className="side-card"
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-              >
+            <div className={`overlay-grid ${isSingle ? "single" : ""}`}>
+              {(mode === "groom" || !isSingle) && (
                 <motion.div
-                  className="side-card-image"
-                  transition={{
-                    duration: 3.2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                  className="side-card"
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
                 >
-                  <img src="/side-left.png" alt="Tiệc nhà trai" />
+                  <motion.div
+                    className="side-card-image"
+                    transition={{
+                      duration: 3.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <img src="/side-left.png" alt="Lễ Tân Hôn" />
+                  </motion.div>
+
+                  <h3 className="side-title">Lễ Tân Hôn</h3>
+
+                  <p className="side-subdate">
+                    <span className="date-highlight">10-01-2026</span>
+                  </p>
+
+                  <button className="open-button" onClick={() => onOpen("groom")}>
+                    Mở thiệp
+                  </button>
                 </motion.div>
+              )}
 
-                <h3 className="side-title">Lễ Tân Hôn</h3>
-
-                {/* ✅ CHỈ ĐỔI HIỂN THỊ NGÀY: TO - RÕ - HỒNG PASTEL */}
-                <p className="side-subdate">
-                  <span className="date-highlight">10-01-2026</span>
-                </p>
-
-                <button className="open-button" onClick={() => onOpen("groom")}>
-                  Mở thiệp
-                </button>
-              </motion.div>
-
-              <motion.div
-                className="side-card"
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.08 }}
-              >
+              {(mode === "bride" || !isSingle) && (
                 <motion.div
-                  className="side-card-image"
-                  transition={{
-                    duration: 3.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.2,
-                  }}
+                  className="side-card"
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: isSingle ? 0 : 0.08 }}
                 >
-                  <img src="/side-right.png" alt="Tiệc nhà gái" />
+                  <motion.div
+                    className="side-card-image"
+                    transition={{
+                      duration: 3.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.2,
+                    }}
+                  >
+                    <img src="/side-right.png" alt="Lễ Vu Quy" />
+                  </motion.div>
+
+                  <h3 className="side-title">Lễ Vu Quy</h3>
+
+                  <p className="side-subdate">
+                    <span className="date-highlight">28-12-2025</span>
+                  </p>
+
+                  <button className="open-button" onClick={() => onOpen("bride")}>
+                    Mở thiệp
+                  </button>
                 </motion.div>
-
-                <h3 className="side-title">Lễ Vu Quy</h3>
-
-                {/* ✅ CHỈ ĐỔI HIỂN THỊ NGÀY: TO - RÕ - HỒNG PASTEL */}
-                <p className="side-subdate">
-                  <span className="date-highlight">28-12-2025</span>
-                </p>
-
-                <button className="open-button" onClick={() => onOpen("bride")}>
-                  Mở thiệp
-                </button>
-              </motion.div>
+              )}
             </div>
           </motion.div>
         </motion.div>

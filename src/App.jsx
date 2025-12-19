@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import './App.css';
+
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 import OverlayIntro from './components/OverlayIntro/OverlayIntro';
 // import GateOpening from './components/GateOpening/GateOpening';
@@ -13,65 +15,71 @@ import ThankYou from './components/ThankYou/ThankYou';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import GiftSection from './components/GiftSection/GiftSection';
 
-function App() {
+function AppInner() {
+  const location = useLocation();
+
+  // ✅ quyết định hiển thị overlay theo link
+  const overlayMode = useMemo(() => {
+    if (location.pathname === '/le-tan-hon') return 'groom';
+    if (location.pathname === '/le-vu-quy') return 'bride';
+    return null; // "/" → hiện cả 2
+  }, [location.pathname]);
+
   const [showOverlay, setShowOverlay] = useState(true);
   const [showGate, setShowGate] = useState(false);
   const [showMain, setShowMain] = useState(false);
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedSide, setSelectedSide] = useState(null); // 'groom' | 'bride'
+  const [selectedSide, setSelectedSide] = useState(null);
+
+  // ✅ nếu vào từ link riêng → set sẵn nhà trai / gái
+  useEffect(() => {
+    if (location.pathname === '/le-tan-hon') {
+      setSelectedSide('groom');
+    } else if (location.pathname === '/le-vu-quy') {
+      setSelectedSide('bride');
+    } else {
+      setSelectedSide(null);
+    }
+  }, [location.pathname]);
 
   // Khi bấm "Mở thiệp"
   const handleOpenInvitation = (side) => {
-    setSelectedSide(side || null);
+    setSelectedSide(side || selectedSide || null);
     setShowOverlay(false);
-
-    // ✅ TẠM BỎ QUA GATEOPENING: vào thẳng nội dung thiệp + bật nhạc
     setShowMain(true);
     setIsPlaying(true);
-
-    // ⛔ Giữ code cũ để bật lại sau (chỉ comment, không xóa)
-    // setShowGate(true);   // 👉 bật cổng
   };
 
-  // Khi cổng mở xong
-  const handleGateFinish = () => {
-    setShowGate(false);  // tắt cổng
-    setShowMain(true);   // hiện nội dung
-    setIsPlaying(true);  // bật nhạc
-  };
-
-  // ✅ Nút quay lại OverlayIntro
+  // Nút quay lại overlay
   const handleBackToOverlay = () => {
     setShowMain(false);
-    setShowGate(false);
     setIsPlaying(false);
-    setSelectedSide(null);
     setShowOverlay(true);
 
-    // optional: kéo lên đầu trang cho sạch
+    // giữ đúng bên theo link
+    if (location.pathname === '/le-tan-hon') setSelectedSide('groom');
+    else if (location.pathname === '/le-vu-quy') setSelectedSide('bride');
+    else setSelectedSide(null);
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className="App">
-      {/* MÀN CHỌN THIỆP */}
       {showOverlay && (
-        <OverlayIntro show={showOverlay} onOpen={handleOpenInvitation} />
+        <OverlayIntro
+          show={showOverlay}
+          onOpen={handleOpenInvitation}
+          mode={overlayMode}
+        />
       )}
 
-      {/* CỔNG MỞ (tạm vô hiệu hóa hiển thị để khách không thấy) */}
-      {/* {showGate && <GateOpening onFinish={handleGateFinish} />} */}
-
-      {/* NỘI DUNG THIỆP */}
       {showMain && (
         <>
-          {/* ✅ Nút back ở đầu trang */}
           <button
-            type="button"
             className="back-to-overlay"
             onClick={handleBackToOverlay}
-            aria-label="Quay lại màn hình mở thiệp"
           >
             ← Quay lại
           </button>
@@ -85,7 +93,7 @@ function App() {
 
           <Slideshow />
           <Gallery />
-          <GiftSection />
+          <GiftSection selectedSide={selectedSide} />
           <ThankYou />
         </>
       )}
@@ -93,4 +101,15 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AppInner />} />
+        <Route path="/le-tan-hon" element={<AppInner />} />
+        <Route path="/le-vu-quy" element={<AppInner />} />
+        <Route path="*" element={<AppInner />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
