@@ -88,8 +88,12 @@ const OverlayIntro = ({ show, onOpen }) => {
                   <img src="/side-left.png" alt="Tiệc nhà trai" />
                 </motion.div>
 
-                <h3 className="side-title">Tiệc nhà trai</h3>
-                <p className="side-subdate">10 tháng 01 năm 2026</p>
+                <h3 className="side-title">Lễ Tân Hôn</h3>
+
+                {/* ✅ CHỈ ĐỔI HIỂN THỊ NGÀY: TO - RÕ - HỒNG PASTEL */}
+                <p className="side-subdate">
+                  <span className="date-highlight">10-01-2026</span>
+                </p>
 
                 <button className="open-button" onClick={() => onOpen("groom")}>
                   Mở thiệp
@@ -114,8 +118,12 @@ const OverlayIntro = ({ show, onOpen }) => {
                   <img src="/side-right.png" alt="Tiệc nhà gái" />
                 </motion.div>
 
-                <h3 className="side-title">Tiệc nhà gái</h3>
-                <p className="side-subdate">28 tháng 12 năm 2025</p>
+                <h3 className="side-title">Lễ Vu Quy</h3>
+
+                {/* ✅ CHỈ ĐỔI HIỂN THỊ NGÀY: TO - RÕ - HỒNG PASTEL */}
+                <p className="side-subdate">
+                  <span className="date-highlight">28-12-2025</span>
+                </p>
 
                 <button className="open-button" onClick={() => onOpen("bride")}>
                   Mở thiệp

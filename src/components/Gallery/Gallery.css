@@ -87,7 +87,7 @@
 /* 5 & 7 → LÊN TRÊN */
 .gallery-item:nth-child(5) .gallery-img,
 .gallery-item:nth-child(7) .gallery-img {
-  object-position: center 30%;
+  object-position: center %;
 }
 
 /* 1,2,3,9,10,11 → XUỐNG DƯỚI */

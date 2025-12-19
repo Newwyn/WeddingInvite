@@ -151,15 +151,29 @@
   text-align: center;
 }
 
-/* Ngày */
+/* ✅ Dòng chứa ngày (giữ gọn), còn số ngày to nằm trong .date-highlight */
 .side-subdate {
   font-family: "Cormorant Garamond", serif;
-  font-size: 14px;
+  font-size: 14px; /* giữ nền nhỏ, không quan trọng */
   color: #777;
   margin: 0 0 10px;
 
   min-height: 20px;
   text-align: center;
+}
+
+/* =========================
+   🔥 NGÀY: 10-01-2026 & 28-12-2025
+   TO - RÕ - HỒNG PASTEL - IN ĐẬM
+========================= */
+.date-highlight {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;      /* TO RÕ TRÊN PC */
+  font-weight: 700;     /* IN ĐẬM */
+  color: #ff8fa3;       /* HỒNG PASTEL */
+  letter-spacing: 1px;
+  line-height: 1;
+  display: inline-block;
 }
 
 /* =========================
@@ -231,6 +245,10 @@
   .side-card-image {
     max-height: 320px;
   }
+
+  .date-highlight {
+    font-size: 26px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -244,6 +262,10 @@
   }
   .side-card-image {
     max-height: 290px;
+  }
+
+  .date-highlight {
+    font-size: 24px;
   }
 }
 
@@ -293,9 +315,14 @@
   }
 
   .side-subdate {
-    font-size: 12px;
+    font-size: 12px; /* dòng p giữ nhỏ */
     margin: 0 0 6px;
     min-height: 16px;
+  }
+
+  .date-highlight {
+    font-size: 20px; /* TO RÕ trên mobile */
+    letter-spacing: 0.6px;
   }
 
   .open-button {
@@ -313,6 +340,10 @@
 
   .side-title {
     font-size: 20px;
+  }
+
+  .date-highlight {
+    font-size: 18px; /* vẫn rõ nhưng không tràn */
   }
 
   .open-button {
